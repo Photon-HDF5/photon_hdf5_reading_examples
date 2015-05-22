@@ -2,7 +2,7 @@ import numpy as np
 import tables
 
 
-filename = 'data/0023uLRpitc_NTP_20dT_0.5GndCl.hdf5'
+filename = '../data/0023uLRpitc_NTP_20dT_0.5GndCl.hdf5'
 
 h5file = tables.open_file(filename)
 photon_data = h5file.root.photon_data

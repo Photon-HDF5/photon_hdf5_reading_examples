@@ -1,3 +1,9 @@
+"""
+This script shows how to read us-ALEX data store in a Photon-HDF5 file.
+
+For more info see the notebooks in the same folder.
+"""
+
 import numpy as np
 import tables
 

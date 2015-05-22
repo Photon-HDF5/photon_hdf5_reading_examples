@@ -1,0 +1,1 @@
+This folder contains Photon-HDF5 data files used as example.

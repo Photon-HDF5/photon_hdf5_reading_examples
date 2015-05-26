@@ -1,5 +1,5 @@
 %
-% This script shows how to read us-ALEX data store in a Photon-HDF5 file.
+% This script shows how to read us-ALEX data stored in a Photon-HDF5 file.
 %
 
 filename = '../data/0023uLRpitc_NTP_20dT_0.5GndCl.hdf5';

@@ -1,5 +1,7 @@
 %
 % This script shows how to read us-ALEX data stored in a Photon-HDF5 file.
+% 
+% MATLAB R2011b or more recent is required.
 %
 
 filename = '../data/0023uLRpitc_NTP_20dT_0.5GndCl.hdf5';

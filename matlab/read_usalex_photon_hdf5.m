@@ -36,9 +36,78 @@ timestamps_acceptor = timestamps(detectors == acceptor_ch);
 timestamps_mod = mod(timestamps - int64(offset), int64(alex_period));
 donor_excitation = (timestamps_mod < donor_period(2)) | (timestamps_mod > donor_period(1));
 acceptor_excitation = (timestamps_mod < acceptor_period(2)) & (timestamps_mod > acceptor_period(1));
+
+%Create modulus array here
+
 timestamps_Dex = timestamps(donor_excitation);
 timestamps_Aex = timestamps(acceptor_excitation);
 
 
 %% Plot ALEX histogram
-% TODO: add same plor as in read_usalex_photon_hdf5.py
+% NOTE: If Matlab version is earlier than R2014b, use the following code:
+
+%Plotting the alternation histogram
+
+nbins = 100;
+acceptor = double(mod(timestamps_acceptor-int64(offset),int64(alex_period)));
+donor = double(mod(timestamps_donor-int64(offset),int64(alex_period)));
+
+figure(1)
+[nb_donor,xb_donor] = hist(donor,nbins);
+[nb_acceptor,xb_acceptor] = hist(acceptor,nbins);
+
+bar(xb_acceptor,nb_acceptor,'facecolor','green');
+hold on;
+bar(xb_donor,nb_donor,'facecolor','red');
+
+title('ALEX histogram')
+xlabel('(timestamps - offset) MOD alex\_period');
+legend('donor','acceptor');
+
+% Timestamps in different excitation periods
+
+nbins_ex = [0:40:alex_period];
+Aex = double(mod(timestamps_Aex-int64(offset),int64(alex_period)));
+Dex = double(mod(timestamps_Dex-int64(offset),int64(alex_period)));
+
+figure(2)
+[nb_Dex,xb_Dex] = hist(donor,nbins_ex);
+[nb_Aex,xb_Aex] = hist(acceptor,nbins_ex);
+
+bar(xb_Dex,nb_Dex,'facecolor','red');
+hold on;
+bar(xb_Aex,nb_Aex,'facecolor','green');
+
+title('ALEX histogram (selected periods only)')
+xlabel('(timestamps - offset) MOD alex\_period');
+legend('D\_ex','A\_ex');
+
+% % NOTE: If Matlab version is R2014b or later, use the following code:
+%
+% % Plotting the alternation histogram
+% nbins = 100;
+% acceptor = timestamps_acceptor-int64(offset);
+% donor = timestamps_donor-int64(offset);
+% 
+% figure(1)
+% histogram(donor,nbins,'facecolor','red');
+% hold on;
+% histogram(acceptor,nbins,'facecolor','green');
+% 
+% title('ALEX histogram')
+% xlabel('(timestamps - offset) MOD alex\_period');
+% legend('donor','acceptor');
+%
+% % Timestamps in different excitation periods
+% nbins_ex = 40;
+% Dex = timestamps_Aex-int64(offset);
+% Aex = timestamps_Dex-int64(offset);
+%
+% figure(2) 
+% histogram(Dex,nbins_ex,'facecolor','red');
+% hold on;
+% histogram(Aex,nbins_ex,'facecolor','green');
+% 
+% title('ALEX histogram (selected periods only)')
+% xlabel('(timestamps - offset) MOD alex\_period');
+% legend('D\_ex','A\_ex');

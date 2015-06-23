@@ -1,6 +1,6 @@
 This folder contains LabVIEW examples on reading Photon-HDF5 files.
 
-The example VI is saved for LabVIEW 2012 on Windows.  Examples for previous versions can be attempted on request.
+The example VI is saved for LabVIEW 2010 on Windows.  Examples for previous versions can be attempted on request.
 
 The VI requires prior installation of the free and open-source HDF5 LabVIEW API "h5Labview" (http://h5labview.sourceforge.net/) in order to provide the HDF5 functionality within LabVIEW.
 

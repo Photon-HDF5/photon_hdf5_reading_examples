@@ -12,7 +12,7 @@ timestamps = h5read(filename, '/photon_data/timestamps');
 timestamps_unit = h5read(filename, '/photon_data/timestamps_specs/timestamps_unit');
 detectors = h5read(filename, '/photon_data/detectors');
 
-% Read timestamps description
+% Read the TITLE attribute in timestamps (containing the array description)
 timestamps_desc = h5readatt(filename, '/photon_data/timestamps', 'TITLE');
 
 donor_ch = h5read(filename, '/photon_data/measurement_specs/detectors_specs/spectral_ch1');
@@ -39,8 +39,7 @@ timestamps_mod = mod(timestamps - int64(offset), int64(alex_period));
 donor_excitation = (timestamps_mod < donor_period(2)) & (timestamps_mod > donor_period(1));
 acceptor_excitation = (timestamps_mod < acceptor_period(2)) & (timestamps_mod > acceptor_period(1));
 
-%Create modulus array here
-
+% Create modulus array
 timestamps_Dex = timestamps(donor_excitation);
 timestamps_Aex = timestamps(acceptor_excitation);
 
@@ -48,7 +47,7 @@ timestamps_Aex = timestamps(acceptor_excitation);
 %% Plot ALEX histogram
 % NOTE: If Matlab version is earlier than R2014b, use the following code:
 
-%Plotting the alternation histogram
+% Plotting the alternation histogram
 
 nbins = 100;
 acceptor = double(mod(timestamps_acceptor-int64(offset),int64(alex_period)));
@@ -84,7 +83,7 @@ title('ALEX histogram (selected periods only)')
 xlabel('(timestamps - offset) MOD alex\_period');
 legend('D\_ex','A\_ex');
 
-% % NOTE: If Matlab version is R2014b or later, use the following code:
+%% NOTE: If Matlab version is R2014b or later, use the following code:
 %
 % % Plotting the alternation histogram
 % nbins = 100;

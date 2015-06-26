@@ -12,6 +12,9 @@ timestamps = h5read(filename, '/photon_data/timestamps');
 timestamps_unit = h5read(filename, '/photon_data/timestamps_specs/timestamps_unit');
 detectors = h5read(filename, '/photon_data/detectors');
 
+% Read timestamps description
+timestamps_desc = h5readatt(filename, '/photon_data/timestamps', 'TITLE');
+
 donor_ch = h5read(filename, '/photon_data/measurement_specs/detectors_specs/spectral_ch1');
 acceptor_ch = h5read(filename, '/photon_data/measurement_specs/detectors_specs/spectral_ch2');
 
@@ -19,7 +22,6 @@ alex_period = h5read(filename, '/photon_data/measurement_specs/alex_period');
 offset = h5read(filename, '/photon_data/measurement_specs/alex_offset');
 donor_period = h5read(filename, '/photon_data/measurement_specs/alex_excitation_period1');
 acceptor_period = h5read(filename, '/photon_data/measurement_specs/alex_excitation_period2');
-
 
 %% Print data summary
 fprintf('Number of photons: %d\n', size(timestamps));
@@ -34,7 +36,7 @@ timestamps_donor = timestamps(detectors == donor_ch);
 timestamps_acceptor = timestamps(detectors == acceptor_ch);
 
 timestamps_mod = mod(timestamps - int64(offset), int64(alex_period));
-donor_excitation = (timestamps_mod < donor_period(2)) | (timestamps_mod > donor_period(1));
+donor_excitation = (timestamps_mod < donor_period(2)) & (timestamps_mod > donor_period(1));
 acceptor_excitation = (timestamps_mod < acceptor_period(2)) & (timestamps_mod > acceptor_period(1));
 
 %Create modulus array here
@@ -66,13 +68,13 @@ legend('donor','acceptor');
 
 % Timestamps in different excitation periods
 
-nbins_ex = [0:40:alex_period];
+nbins_ex = [0:40:double(alex_period)];
 Aex = double(mod(timestamps_Aex-int64(offset),int64(alex_period)));
 Dex = double(mod(timestamps_Dex-int64(offset),int64(alex_period)));
 
 figure(2)
-[nb_Dex,xb_Dex] = hist(donor,nbins_ex);
-[nb_Aex,xb_Aex] = hist(acceptor,nbins_ex);
+[nb_Dex,xb_Dex] = hist(Dex,nbins_ex);
+[nb_Aex,xb_Aex] = hist(Aex,nbins_ex);
 
 bar(xb_Dex,nb_Dex,'facecolor','red');
 hold on;
@@ -86,22 +88,22 @@ legend('D\_ex','A\_ex');
 %
 % % Plotting the alternation histogram
 % nbins = 100;
-% acceptor = timestamps_acceptor-int64(offset);
-% donor = timestamps_donor-int64(offset);
+% acceptor = mod(timestamps_acceptor-int64(offset),int64(alex_period));
+% donor = mod(timestamps_donor-int64(offset),int64(alex_period));
 % 
 % figure(1)
-% histogram(donor,nbins,'facecolor','red');
-% hold on;
 % histogram(acceptor,nbins,'facecolor','green');
-% 
+% hold on;
+% histogram(donor,nbins,'facecolor','red');
+%
 % title('ALEX histogram')
 % xlabel('(timestamps - offset) MOD alex\_period');
 % legend('donor','acceptor');
 %
 % % Timestamps in different excitation periods
 % nbins_ex = 40;
-% Dex = timestamps_Aex-int64(offset);
-% Aex = timestamps_Dex-int64(offset);
+% Dex = mod(timestamps_Aex-int64(offset),int64(alex_period));
+% Aex = mod(timestamps_Dex-int64(offset),int64(alex_period));
 %
 % figure(2) 
 % histogram(Dex,nbins_ex,'facecolor','red');

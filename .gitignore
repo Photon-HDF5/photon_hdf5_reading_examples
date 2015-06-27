@@ -1,3 +1,4 @@
 *.pyc
 *ipynb_checkpoint*
 
+data/*.hdf5

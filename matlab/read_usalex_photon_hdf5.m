@@ -75,9 +75,9 @@ figure(2)
 [nb_Dex,xb_Dex] = hist(Dex,nbins_ex);
 [nb_Aex,xb_Aex] = hist(Aex,nbins_ex);
 
-bar(xb_Dex,nb_Dex,'facecolor','red');
+bar(xb_Dex,nb_Dex,'facecolor','green');
 hold on;
-bar(xb_Aex,nb_Aex,'facecolor','green');
+bar(xb_Aex,nb_Aex,'facecolor','red');
 
 title('ALEX histogram (selected periods only)')
 xlabel('(timestamps - offset) MOD alex\_period');

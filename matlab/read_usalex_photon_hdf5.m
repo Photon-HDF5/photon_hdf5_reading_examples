@@ -89,7 +89,7 @@ legend('D\_ex','A\_ex');
 % nbins = 100;
 % acceptor = mod(timestamps_acceptor-int64(offset),int64(alex_period));
 % donor = mod(timestamps_donor-int64(offset),int64(alex_period));
-% 
+%
 % figure(1)
 % histogram(acceptor,nbins,'facecolor','green');
 % hold on;
@@ -104,11 +104,11 @@ legend('D\_ex','A\_ex');
 % Dex = mod(timestamps_Aex-int64(offset),int64(alex_period));
 % Aex = mod(timestamps_Dex-int64(offset),int64(alex_period));
 %
-% figure(2) 
+% figure(2)
 % histogram(Dex,nbins_ex,'facecolor','red');
 % hold on;
 % histogram(Aex,nbins_ex,'facecolor','green');
-% 
+%
 % title('ALEX histogram (selected periods only)')
 % xlabel('(timestamps - offset) MOD alex\_period');
 % legend('D\_ex','A\_ex');

@@ -39,7 +39,6 @@ fprintf('Laser repetion rate:     %d  \nDonor period:    %d, %d      \nAcceptor 
 nanotimes_donor = nanotimes(detectors == donor_ch);
 nanotimes_acceptor = nanotimes(detectors == acceptor_ch);
 
-
 %% Plot TCSPC histogram
 bin_centers = [0:1:double(tcspc_num_bins)-1] + 0.5;
 [tcspc_counts_d, bin_centers] = hist(nanotimes_donor, bin_centers);

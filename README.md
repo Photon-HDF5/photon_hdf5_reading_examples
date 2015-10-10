@@ -11,6 +11,11 @@ and extract it: it will contain an empty data folder. Next, download the
 [example Photon-HDF5 files](http://figshare.com/articles/Example_smFRET_data_files_in_Photon_HDF5_format/1456362)
 and unzip them in the empty data folder.
 
+For more info on reading Photon-HDF5 files refer to the official [Photon-HDF5 documentation](http://photon-hdf5.readthedocs.org/), in particular:
+
+- [Reading Photon-HDF5 files](http://photon-hdf5.readthedocs.org/en/latest/reading.html)
+
+
 ## Support
 
 For any issue in running the examples please [open an issue](https://github.com/Photon-HDF5/photon_hdf5_reading_examples/issues) or ask a question on the [Photon-HDF5 Google Group](https://groups.google.com/forum/#!forum/photon-hdf5).

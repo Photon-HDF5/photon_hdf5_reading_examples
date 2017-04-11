@@ -10,7 +10,7 @@ examples for a specific language in different folders:
 - [LabVIEW read examples](https://github.com/Photon-HDF5/photon_hdf5_reading_examples/tree/master/labview)
 
 To execute the examples please download this repository archive
-([Download ZIP](https://github.com/Photon-HDF5/photon_hdf5_reading_examples/archive/master.zip))
+(**[Download ZIP](https://github.com/Photon-HDF5/photon_hdf5_reading_examples/archive/master.zip)**)
 and extract it: it will contain an empty **data folder**. Next, download the
 [example Photon-HDF5 files](http://figshare.com/articles/Example_smFRET_data_files_in_Photon_HDF5_format/1456362)
 and unzip them in the empty data folder.
